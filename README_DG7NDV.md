@@ -79,6 +79,11 @@ DVB-S2 at 250/200 kBd, and a round rate such as 180 kBd (166.7 kBd is rounded by
 Possible causes for the DVB-S2 failure at low rates (not confirmed): uncalibrated I/Q (carrier leakage in the signal centre,
 `cal.json` is zero), receiver acquisition at low symbol rates, different DAC loops. Upstream also reports lock problems at 66 kBd and below.
 
+Second receiver, Portsdown 4 (fixed SR, 2403.25 MHz, DVB-S, QPSK 1/2): 250 kBd locks and shows the test card.
+333 kBd locked with `--ppm 28` (about 14 s) and did not lock in 20 s with `--ppm 0` (carrier about 70 kHz = 21 % of the symbol rate too high),
+so the crystal correction is very likely what makes the difference. After restarting the transmitter the receiver sometimes has to be restarted (RECEIVE) as well.
+At 125 kBd the Portsdown did not lock either, although frequency, symbol rate and mode were set to fixed values.
+
 Practical notes:
 
 - After an aborted run (second Ctrl+C during the FFmpeg shutdown) the board can stop radiating after a few seconds; unplugging and
@@ -164,6 +169,11 @@ DVB-S2 bei 250/200 kBd und eine glatte Rate wie 180 kBd (166,7 kBd rundet die Fi
 
 Mögliche Ursachen für den DVB-S2-Ausfall bei kleinen Raten (nicht bestätigt): nicht kalibrierte I/Q-Werte (Trägerrest in der Mitte,
 `cal.json` ist null), Einrasten des Empfängers bei kleinen Symbolraten, andere DAC-Schleifen. Das Original meldet ebenfalls Lock-Probleme ab 66 kBd abwärts.
+
+Zweiter Empfänger, Portsdown 4 (feste SR, 2403,25 MHz, DVB-S, QPSK 1/2): 250 kBd rastet ein und zeigt das Testbild.
+333 kBd rastete mit `--ppm 28` ein (nach etwa 14 s) und nicht in 20 s mit `--ppm 0` (Träger rund 70 kHz = 21 % der Symbolrate zu hoch),
+die Quarzkorrektur ist also sehr wahrscheinlich der entscheidende Unterschied. Nach einem Neustart des Senders muss der Empfänger manchmal ebenfalls neu gestartet werden (RECEIVE).
+Bei 125 kBd rastete der Portsdown ebenfalls nicht ein, obwohl Frequenz, Symbolrate und Modus fest eingestellt waren.
 
 Praktische Hinweise:
 
